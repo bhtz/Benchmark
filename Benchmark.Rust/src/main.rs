@@ -1,10 +1,8 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
 #[macro_use] extern crate rocket;
-#[macro_use] extern crate rocket_contrib;
-#[macro_use] extern crate serde;
 
-use rocket_contrib::json::Json;
+use rocket::serde::json::Json;
 use uuid::Uuid;
 #[path = "models/User.rs"] mod models;
 
@@ -15,6 +13,7 @@ fn get_user() -> Json<models::User> {
     Json(user)
 }
 
-fn main() {
-    rocket::ignite().mount("/api", routes![get_user]).launch();
+#[launch]
+fn rocket() -> _ {
+    rocket::build().mount("/api", routes![get_user])
 }
