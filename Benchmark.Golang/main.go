@@ -12,13 +12,7 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/api/user", func(c *gin.Context) {
-		user := models.User{
-			Id:        uuid.NewString(),
-			Email:     "heintz.benjamin@gmail.com",
-			Firstname: "Benjamin",
-			Lastname:  "HEINTZ",
-		}
-
+		user := models.NewUser(uuid.NewString(), "Benjamin", "HEINTZ", "heintz.benjamin@gmail.com")
 		c.JSON(200, user)
 	})
 

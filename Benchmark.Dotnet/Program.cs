@@ -6,13 +6,7 @@ var app = builder.Build();
 
 app.MapGet("/api/user", () => 
 {
-    return new User()
-    {
-        Id = Guid.NewGuid(),
-        Firstname = "Benjamin",
-        Lastname = "HEINTZ",
-        Email = "heintz.benjamin@gmail.com"
-    };
+    return new User(Guid.NewGuid(), "Benjamin", "HEINTZ", "heintz.benjamin@gmail.com");
 });
 
 app.Run();

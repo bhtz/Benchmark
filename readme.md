@@ -7,79 +7,17 @@ MacBook Pro 2017
 CPU : 2,3 GHz Intel Core i5 double core
 RAM: 16 Go 2133 MHz LPDDR3
 
+Benchmark tool : 
+
+(Round 1) 
 ApacheBench, Version 2.3
 
-DOTNET (6.0.201):
-=================
+(Round 2) 
+autocannon v7.8.1
+node v16.14.2
 
-ab -n 10000 -c 100 http://127.0.0.1:5000/api/user
-
-Requests per second:    3165.90 [#/sec] (mean)
-Requests per second:    3765.36 [#/sec] (mean)
-Requests per second:    3968.57 [#/sec] (mean)
-
-MOYENNE : 3632 r/s
-
-GOLANG (1.18 - Gin 1.7.7):
-==========================
-
-ab -n 10000 -c 100 http://127.0.0.1:5100/api/user
-
-Requests per second:    1666.49 [#/sec] (mean)
-Requests per second:    1244.32 [#/sec] (mean)
-Requests per second:    1813.94 [#/sec] (mean)
-
-MOYENNE : 1574 r/s
-
-NODE (16.14.2):
-===============
-
-ab -n 10000 -c 100 http://127.0.0.1:5200/api/user
-
-Requests per second:    2755.53 [#/sec] (mean)
-Requests per second:    3126.53 [#/sec] (mean)
-Requests per second:    2546.57 [#/sec] (mean)
-
-MOYENNE : 2809 r/s
-
-PYTHON (3.10.4):
-========
-
-ab -n 10000 -c 100 http://127.0.0.1:5300/api/user
-
-Requests per second:    712.35 [#/sec] (mean)
-Requests per second:    434.21 [#/sec] (mean)
-Requests per second:    621.34 [#/sec] (mean)
-
-MOYENNE : 589 r/s
-
-JAVA (18 - StringBoot 3.0)
-===============
-
-ab -n 10000 -c 100 http://127.0.0.1:5400/api/user
-
-Requests per second:    2560.05 [#/sec] (mean)
-Requests per second:    564.67 [#/sec] (mean)
-Requests per second:    3941.60 [#/sec] (mean)
-Requests per second:    413.90 [#/sec] (mean)
-Requests per second:    1691.86 [#/sec] (mean)
-Requests per second:    513.44 [#/sec] (mean)
-
-MOYENNE : 1613 r/s
-
-RUBY (2.4)
-==========
-
-ab -n 10000 -c 100 http://127.0.0.1:5500/api/user
-
-Requests per second:    614.06 [#/sec] (mean)
-Requests per second:    465.21 [#/sec] (mean)
-Requests per second:    515.53 [#/sec] (mean)
-
-MOYENNE : 531 r/s
-
-RESULTS (AVG): 
-==============
+(ROUND 1) APACHE BENCH (AVG): 
+================================
 
 * 1 : DOTNET (3632 r/s)
 * 2 : NODE (2809 r/s)
@@ -87,3 +25,109 @@ RESULTS (AVG):
 * 4 : GOLANG (1574 r/s)
 * 5 : PYTHON (589 r/s)
 * 6 : RUBY (531 r/s)
+
+(ROUND 2) AUTOCANNON (AVG): 
+==============================
+
+* 1 : DOTNET (12 065 r/s)
+* 2 : JAVA (4831.78 r/s)
+* 3 : NODE (4459.2 r/s)
+* 4 : GOLANG (4292.5 r/s)
+* 5 : PYTHON (1407 r/s)
+* 6 : RUBY (525.4 r/s)
+
+
+DOTNET (6.0.201):
+=================
+
+ab -n 10000 -c 100 http://127.0.0.1:5000/api/user
+
+...
+
+autocannon http://localhost:5000/api/user -d 10 -c 100 -w 3
+
+│ Stat      │ 1%      │ 2.5%    │ 50%     │ 97.5%   │ Avg     │ Stdev   │ Min     │
+├───────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+│ Req/Sec   │ 6927    │ 6927    │ 12775   │ 13751   │ 12065   │ 2019.62 │ 6924    │
+├───────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+│ Bytes/Sec │ 1.96 MB │ 1.96 MB │ 3.61 MB │ 3.89 MB │ 3.41 MB │ 571 kB  │ 1.96 MB │
+
+
+GOLANG (1.18 - Gin 1.7.7):
+==========================
+
+ab -n 10000 -c 100 http://127.0.0.1:5100/api/user
+
+...
+
+autocannon http://localhost:5100/api/user -d 10 -c 100 -w 3
+
+│ Stat      │ 1%     │ 2.5%   │ 50%     │ 97.5%  │ Avg     │ Stdev   │ Min    │
+├───────────┼────────┼────────┼─────────┼────────┼─────────┼─────────┼────────┤
+│ Req/Sec   │ 1529   │ 1529   │ 4323    │ 6063   │ 4292.5  │ 1296.18 │ 1529   │
+├───────────┼────────┼────────┼─────────┼────────┼─────────┼─────────┼────────┤
+│ Bytes/Sec │ 379 kB │ 379 kB │ 1.07 MB │ 1.5 MB │ 1.06 MB │ 321 kB  │ 379 kB
+
+
+NODE (16.14.2):
+===============
+
+ab -n 10000 -c 100 http://127.0.0.1:5200/api/user
+
+...
+
+autocannon http://localhost:5200/api/user -d 10 -c 100 -w 3
+
+│ Stat      │ 1%     │ 2.5%   │ 50%     │ 97.5%   │ Avg     │ Stdev  │ Min    │
+├───────────┼────────┼────────┼─────────┼─────────┼─────────┼────────┼────────┤
+│ Req/Sec   │ 2413   │ 2413   │ 4563    │ 5295    │ 4459.2  │ 825.89 │ 2412   │
+├───────────┼────────┼────────┼─────────┼─────────┼─────────┼────────┼────────┤
+│ Bytes/Sec │ 868 kB │ 868 kB │ 1.64 MB │ 1.91 MB │ 1.61 MB │ 297 kB │ 868 kB 
+
+
+PYTHON (3.10.4):
+========
+
+ab -n 10000 -c 100 http://127.0.0.1:5300/api/user
+
+...
+
+autocannon http://localhost:5300/api/user -d 10 -c 100 -w 3
+
+│ Stat      │ 1%     │ 2.5%   │ 50%    │ 97.5%  │ Avg    │ Stdev   │ Min    │
+├───────────┼────────┼────────┼────────┼────────┼────────┼─────────┼────────┤
+│ Req/Sec   │ 1071   │ 1071   │ 1364   │ 1900   │ 1407   │ 214.42  │ 1071   │
+├───────────┼────────┼────────┼────────┼────────┼────────┼─────────┼────────┤
+│ Bytes/Sec │ 306 kB │ 306 kB │ 390 kB │ 544 kB │ 402 kB │ 61.3 kB │ 306 kB 
+
+
+JAVA (18 - StringBoot 3.0)
+===============
+
+ab -n 10000 -c 100 http://127.0.0.1:5400/api/user
+
+...
+
+autocannon http://localhost:5400/api/user -d 10 -c 100 -w 3
+
+│ Stat      │ 1%     │ 2.5%   │ 50%     │ 97.5%   │ Avg     │ Stdev   │ Min    │
+├───────────┼────────┼────────┼─────────┼─────────┼─────────┼─────────┼────────┤
+│ Req/Sec   │ 2571   │ 2571   │ 5203    │ 6423    │ 4831.78 │ 1191.28 │ 2571   │
+├───────────┼────────┼────────┼─────────┼─────────┼─────────┼─────────┼────────┤
+│ Bytes/Sec │ 764 kB │ 764 kB │ 1.54 MB │ 1.91 MB │ 1.43 MB │ 353 kB  │ 764 kB
+
+
+RUBY (2.4)
+==========
+
+ab -n 10000 -c 100 http://127.0.0.1:5500/api/user
+
+...
+
+autocannon http://localhost:5500/api/user -d 10 -c 100 -w 3
+
+│ Stat      │ 1%     │ 2.5%   │ 50%    │ 97.5%  │ Avg    │ Stdev │ Min    │
+├───────────┼────────┼────────┼────────┼────────┼────────┼───────┼────────┤
+│ Req/Sec   │ 449    │ 449    │ 538    │ 586    │ 525.4  │ 38.49 │ 449    │
+├───────────┼────────┼────────┼────────┼────────┼────────┼───────┼────────┤
+│ Bytes/Sec │ 152 kB │ 152 kB │ 182 kB │ 198 kB │ 178 kB │ 13 kB │ 152 kB 
