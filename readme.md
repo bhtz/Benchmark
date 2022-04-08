@@ -86,3 +86,8 @@ RUST (1.62 - rocket 0.4.10 / actix 4)
 ==========
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5600/api/user
+
+PHP (8.1.4 - slim 4)
+==========
+
+    wrk -t8 -c100 -d10s http://127.0.0.1:5700/api/user
