@@ -9,7 +9,8 @@ import (
 
 func main() {
 
-	r := gin.Default()
+	gin.SetMode(gin.ReleaseMode)
+	r := gin.New()
 
 	r.GET("/api/user", func(c *gin.Context) {
 		user := models.NewUser(uuid.NewString(), "Benjamin", "HEINTZ", "heintz.benjamin@gmail.com")
