@@ -1,5 +1,7 @@
-BENCHMARK
-=========
+WEB FRAMEWORK BENCHMARK
+=======================
+
+The objective of this benchmark is to compare the performance of several web frameworks with a minimal API approach (just for fun !)
 
 Setup : 
 -------
@@ -43,46 +45,44 @@ B TIER :
 --------
 
 * PYTHON
+
+C TIER : 
+--------
+
 * RUBY
 * PHP
-
 
 DOTNET (6.0.201):
 =================
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5000/api/user
 
-
 GOLANG (1.18 - Gin 1.7.7):
 ==========================
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5100/api/user
-
 
 NODE (16.14.2):
 ===============
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5200/api/user
 
-
 PYTHON (3.10.4):
 ========
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5300/api/user
-
 
 JAVA (18 - StringBoot 3.0)
 ===============
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5400/api/user
 
-
 RUBY (2.4)
 ==========
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5500/api/user
 
-RUST (1.62 - rocket 0.4.10 / actix 4)
+RUST (1.62 - actix 4)
 ==========
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5600/api/user
