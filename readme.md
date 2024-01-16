@@ -6,9 +6,9 @@ The objective of this benchmark is to compare the performance of several web fra
 Setup : 
 -------
 
-MacBook Pro 2017
-CPU : 2,3 GHz Intel Core i5 double core
-RAM: 16 Go 2133 MHz LPDDR3
+MacBook Pro 
+CPU : Apple M1 Max
+RAM: 64 Go
 
 Benchmark tool : 
 ----------------
@@ -18,73 +18,76 @@ WRK (https://github.com/wg/wrk)
 RESULTS :
 =========
 
-* 1 : GOLANG - gin        (23 767.12 requests/sec)
-* 2 : DOTNET - asp net    (20 554.76 requests/sec)
-* 3 : RUST - actix        (20 298.21 requests/sec)
-* 4 : RUST - rocket       (14 684.19 requests/sec)
-* 5 : JAVA - springboot   (8 413.73 requests/sec)
-* 6 : NODE - express      (5 361.38 requests/sec)
-* 7 : PYTHON - flask      (1 458.26 requests/sec)
-* 8 : RUBY - sinatra      (494.32 requests/sec)
-* 9 : PHP - slim          (179.57 requests/sec)
+* 1 : RUST - actix        (131 545.40 requests/sec)
+* 2 : GOLANG - gin        (128 505.33 requests/sec)
+* 3 : DOTNET - asp net    (126 291.80 requests/sec)
+* 5 : JAVA - quarkus      (120 657.98 requests/sec)
+* 6 : NODE - express      (18 225.17 requests/sec)
+* 7 : RUBY - sinatra      (4 925.61 requests/sec)
+* 8 : PYTHON - flask      (1 623.43 requests/sec)
+* 9 : PHP - slim          (179.57 requests/sec) -- todo
 
 S TIER :
 --------
 
+* RUST
 * GOLANG
 * .NET
-* RUST
+* JAVA
 
 A TIER :
 --------
 
-* JAVA
 * NODE
 
 B TIER :
 --------
 
+* RUBY
 * PYTHON
 
 C TIER : 
 --------
 
-* RUBY
 * PHP
 
-DOTNET (6.0.201):
+DOTNET (8.0.100):
 =================
-
+    dotnet publish -c Release
+    ./bin/Release/Benchmark.Dotnet
     wrk -t8 -c100 -d10s http://127.0.0.1:5000/api/user
 
 GOLANG (1.18 - Gin 1.7.7):
 ==========================
-
+    go build -ldflags "-s -w" main.go
+    ./main
     wrk -t8 -c100 -d10s http://127.0.0.1:5100/api/user
 
-NODE (16.14.2):
+QUARKUS (OpenJDK 21 - Quarkus 3.6.5)
 ===============
+    quarkus build
+    java -jar target/quarkus-app/quarkus-run.jar
+    wrk -t8 -c100 -d10s http://127.0.0.1:8080/api/user
 
+NODE (20.11):
+===============
+    node index.js
     wrk -t8 -c100 -d10s http://127.0.0.1:5200/api/user
 
-PYTHON (3.10.4):
+PYTHON (3.11):
 ========
-
+    python3 app.py
     wrk -t8 -c100 -d10s http://127.0.0.1:5300/api/user
 
-JAVA (18 - StringBoot 3.0)
-===============
-
-    wrk -t8 -c100 -d10s http://127.0.0.1:5400/api/user
-
-RUBY (2.4)
+RUBY (3.3)
 ==========
-
+    ruby app.rb
     wrk -t8 -c100 -d10s http://127.0.0.1:5500/api/user
 
-RUST (1.62 - actix 4)
+RUST (1.75 - actix 4)
 ==========
-
+    cargo build --release
+    ./target/release/benchmark-rust
     wrk -t8 -c100 -d10s http://127.0.0.1:5600/api/user
 
 PHP (8.1.4 - slim 4)
