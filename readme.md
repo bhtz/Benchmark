@@ -15,7 +15,7 @@ Benchmark tool :
 
 WRK (https://github.com/wg/wrk)
 
-RESULTS :
+RESULTS 2024 :
 =========
 
 * 1 : RUST - actix        (131 545.40 requests/sec)
@@ -25,7 +25,7 @@ RESULTS :
 * 6 : NODE - express      (18 225.17 requests/sec)
 * 7 : RUBY - sinatra      (4 925.61 requests/sec)
 * 8 : PYTHON - flask      (1 623.43 requests/sec)
-* 9 : PHP - slim          (179.57 requests/sec) -- todo
+* 9 : PHP - slim          (465.38 requests/sec)
 
 S TIER :
 --------
@@ -90,7 +90,7 @@ RUST (1.75 - actix 4)
     ./target/release/benchmark-rust
     wrk -t8 -c100 -d10s http://127.0.0.1:5600/api/user
 
-PHP (8.1.4 - slim 4)
+PHP (8.3.1 - slim 4)
 ==========
 
     wrk -t8 -c100 -d10s http://127.0.0.1:5700/api/user
