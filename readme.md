@@ -3,6 +3,18 @@ WEB FRAMEWORK BENCHMARK
 
 The objective of this benchmark is to compare the performance of several web frameworks with a minimal API approach (just for fun !)
 
+Application :
+-------------
+
+- [x] GET / respond with json {"name": "Benchmark.MyStack"}
+- [x] GET /api/user respond an object User serialized in json {"id": "uuid V4", "firstname": "toto", "lastname": "titi", "email": "toto@titi.com"}
+- [ ] GET /api/articles respond a list of 50 articles stored in database and json serialized
+
+Requirements :
+--------------
+
+* Docker
+
 Setup : 
 -------
 
@@ -34,19 +46,6 @@ RESULTS WITH CONTAINER :
 * 8 : PYTHON - fastapi    (2 244.22 requests/sec)
 * 7 : RUBY - sinatra      (1097.36 requests/sec)
 * 9 : PHP - slim          (xxx requests/sec) -- todo
-
-RESULTS WITH LOCAL RUN :
-==============
-
-* 1 : RUST - actix        (131 545.40 requests/sec)
-* 2 : GOLANG - gin        (128 505.33 requests/sec)
-* 3 : DOTNET - asp net    (126 291.80 requests/sec)
-* 5 : JAVA - quarkus      (120 657.98 requests/sec)
-* 6 : NODE - express      (18 225.17 requests/sec)
-* 7 : RUBY - sinatra      (4 925.61 requests/sec)
-* 8 : PYTHON - flask      (1 623.43 requests/sec)
-* 9 : PHP - slim          (465.38 requests/sec)
-
 
 RUST (1.75 - actix 4)
 ====================
