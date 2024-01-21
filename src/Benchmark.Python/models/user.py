@@ -1,6 +1,3 @@
-from tkinter.messagebox import NO
-
-
 class User(object):
     
     id = None

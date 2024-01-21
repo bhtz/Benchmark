@@ -19,11 +19,11 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
-  x86_64-darwin-20
+  ruby
 
 DEPENDENCIES
   puma (~> 5.6)
   sinatra (~> 2.2)
 
 BUNDLED WITH
-   2.5.4
+   2.5.5

@@ -1,0 +1,83 @@
+version: "3.8"
+name: benchmark
+services:
+  postgres:
+    image: postgres:12
+    container_name: benchmark-database
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - benchmark_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+
+  dotnet-service:
+    image: benchmark/dotnet-service:latest
+    container_name: dotnet-service
+    build: 
+      context: src/Benchmark.Dotnet
+      dockerfile: Dockerfile
+    ports:
+      - "5100:8080"
+    depends_on:
+      - "postgres"
+
+  node-service:
+    image: benchmark/node-service:latest
+    container_name: node-service
+    build: 
+      context: src/Benchmark.Nodejs
+      dockerfile: Dockerfile
+    ports:
+      - "5200:8080"
+    depends_on:
+      - "postgres"
+
+  python-service:
+    image: benchmark/python-service:latest
+    container_name: python-service
+    build: 
+      context: src/Benchmark.Python
+      dockerfile: Dockerfile
+    ports:
+      - "5300:8080"
+    depends_on:
+      - "postgres"
+
+  java-service:
+    image: benchmark/java-service:latest
+    container_name: java-service
+    build: 
+      context: src/Benchmark.Quarkus
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "5400:8080"
+    depends_on:
+      - "postgres"
+
+  golang-service:
+    image: benchmark/golang-service:latest
+    container_name: golang-service
+    build: 
+      context: src/Benchmark.Golang
+      dockerfile: Dockerfile
+    ports:
+      - "5500:8080"
+    depends_on:
+      - "postgres"
+
+  ruby-service:
+    image: benchmark/ruby-service:latest
+    container_name: ruby-service
+    build: 
+      context: src/Benchmark.Ruby
+      dockerfile: Dockerfile
+    ports:
+      - "5600:8080"
+    depends_on:
+      - "postgres"
+
+volumes:
+  benchmark_data:
