@@ -51,7 +51,7 @@ RUST (1.75 - actix 4)
 ====================
     cargo build --release
     ./target/release/benchmark-rust
-    wrk -t8 -c100 -d10s http://127.0.0.1:5600/api/us
+    wrk -t8 -c100 -d10s http://127.0.0.1:5700/api/user
 
 GOLANG (1.21.6 - Gin 1.9.1):
 ==========================
@@ -62,7 +62,7 @@ GOLANG (1.21.6 - Gin 1.9.1):
 DOTNET (8.0.100):
 =================
 
-**Run**
+**Local run**
 ```console
     cd src/Benchmark.Dotnet
     dotnet run
@@ -121,18 +121,31 @@ NODE (20.11 - express 4):
     wrk -t8 -c100 -d10s http://127.0.0.1:5200/api/user
 ```
 
-PYTHON (3.11 - Flask):
-========
-> todo : move to fast API & server with webserver
+PYTHON (3.11 - FastAPI):
+========================
+
+**Local run**
+```console
     python3 app.py
+```
+
+**Benchmark**
+```console
     wrk -t8 -c100 -d10s http://127.0.0.1:5300/api/user
+```
 
+RUBY (3.3 - sinatra 2.2)
+========================
 
-RUBY (3.3)
-==========
-> todo : serve with webserver
+**Local run**
+```console
     ruby app.rb
+```
+
+**Benchmark**
+```console
     wrk -t8 -c100 -d10s http://127.0.0.1:5500/api/user
+```
 
 PHP (8.3.1 - slim 4)
 ==========
