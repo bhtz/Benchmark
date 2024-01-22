@@ -79,5 +79,27 @@ services:
     depends_on:
       - "postgres"
 
+  rust-service:
+    image: benchmark/rust-service:latest
+    container_name: rust-service
+    build: 
+      context: src/Benchmark.Rust
+      dockerfile: Dockerfile
+    ports:
+      - "5700:8080"
+    depends_on:
+      - "postgres"
+
+  php-service:
+    image: benchmark/php-service:latest
+    container_name: php-service
+    build: 
+      context: src/Benchmark.PHP
+      dockerfile: Dockerfile
+    ports:
+      - "5800:80"
+    depends_on:
+      - "postgres"
+
 volumes:
   benchmark_data:

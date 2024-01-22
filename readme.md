@@ -38,14 +38,14 @@ Build & run containers :
 RESULTS WITH CONTAINER :
 ======================
 
-* 1 : RUST - actix        (xxx requests/sec) -- todo
+* 1 : RUST - actix        (27 739.79 requests/sec)
 * 2 : GOLANG - gin        (25 793.99 requests/sec)
 * 3 : DOTNET - asp net    (24 957.23 requests/sec)
 * 5 : JAVA - quarkus      (18 311.27 requests/sec)
-* 6 : NODE - express      (6 881.13 requests/sec)
-* 8 : PYTHON - fastapi    (2 244.22 requests/sec)
-* 7 : RUBY - sinatra      (1097.36 requests/sec)
-* 9 : PHP - slim          (xxx requests/sec) -- todo
+* 6 : NODE - express      (6 881.13  requests/sec)
+* 8 : PYTHON - fastapi    (2 244.22  requests/sec)
+* 7 : RUBY - sinatra      (1 097.36  requests/sec)
+* 9 : PHP - slim          (565.35    requests/sec)
 
 RUST (1.75 - actix 4)
 ====================
@@ -149,8 +149,17 @@ RUBY (3.3 - sinatra 2.2)
 
 PHP (8.3.1 - slim 4)
 ==========
-> todo : serve with webserver
-    wrk -t8 -c100 -d10s http://127.0.0.1:5700/api/user
+
+**Local run**
+```console
+    php -S localhost:8080 -t public public/index.php
+```
+
+**Benchmark**
+```console
+    wrk -t8 -c100 -d10s http://127.0.0.1:5800/api/user
+```
+
 
 
 ## NEXT STEP
